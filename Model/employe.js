@@ -1,4 +1,4 @@
-import  mongoose from 'mongoose' ;
+import mongoose from 'mongoose'
 
 const experienceSchema = new mongoose.Schema({
     id: Number,
@@ -11,7 +11,12 @@ const employeeSchema = new mongoose.Schema({
     employeId: Number,
     name: String,
     phoneNumber: String,
-    email: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    },
     address: String,
     designation: String,
     joiningDate: String,
@@ -21,4 +26,4 @@ const employeeSchema = new mongoose.Schema({
 
 const EmployeeModel = mongoose.model('Employee', employeeSchema);
 
-export default  EmployeeModel;
+export default EmployeeModel;
